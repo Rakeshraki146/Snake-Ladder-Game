@@ -1,1 +1,109 @@
-The requested file reference is not currently visible. Use files.search or files.list to rediscover the file, then retry with a returned ref_id or file_id.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake &amp; Ladder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <p class="eyebrow">Two player &middot; pass and play</p>
+      <h1>Snake <span>&amp;</span> Ladder</h1>
+    </header>
+
+    <!-- Player Setup Screen -->
+    <div class="setup-card" id="setupScreen">
+      <h2>Who's playing?</h2>
+      <p class="setup-sub">Enter both names, then start the game.</p>
+      <div class="field">
+        <label for="p1NameInput">
+          <span class="dot" style="background:var(--coral-500)"></span>Player 1
+        </label>
+        <input type="text" id="p1NameInput" placeholder="Player 1 name" maxlength="16" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="p2NameInput">
+          <span class="dot" style="background:var(--sky-500)"></span>Player 2
+        </label>
+        <input type="text" id="p2NameInput" placeholder="Player 2 name" maxlength="16" autocomplete="off">
+      </div>
+      <p class="error-msg" id="nameError" style="display:none;"></p>
+      <button class="btn-start" id="startBtn">Start game</button>
+    </div>
+
+    <!-- Main Game Board Layout -->
+    <div class="layout hidden" id="layout">
+      <div class="board-wrap">
+        <div id="board">
+          <svg class="overlay" viewBox="0 0 560 560"></svg>
+        </div>
+        <div class="legend">
+          <span><span class="swatch" style="background:var(--gold-500)"></span>Ladder</span>
+          <span><span class="swatch" style="background:#4CAF50"></span>Snake</span>
+        </div>
+      </div>
+
+      <div class="side">
+        <!-- Turn and Dice Control Card -->
+        <div class="card">
+          <p class="turn-label" id="turnLabel">Player 1's turn</p>
+          <p class="turn-sub" id="turnSub">Roll the dice to begin</p>
+          <div class="dice-row"><div id="dice"></div></div>
+          <p class="dice-value" id="diceValue">Dice: &mdash;</p>
+          <button class="btn-roll" id="rollBtn">Roll dice</button>
+          <p class="status" id="status">Player 1, click roll dice to start.</p>
+        </div>
+
+        <!-- Scores, Status and Actions Card -->
+        <div class="card">
+          <div class="positions">
+            <div class="pos-row">
+              <span class="name">
+                <span class="dot" style="background:var(--coral-500)"></span>
+                <span id="p1nameLabel">Player 1</span>
+              </span>
+              <span id="p1pos">Not started</span>
+            </div>
+            <div class="pos-row">
+              <span class="name">
+                <span class="dot" style="background:var(--sky-500)"></span>
+                <span id="p2nameLabel">Player 2</span>
+              </span>
+              <span id="p2pos">Not started</span>
+            </div>
+          </div>
+          <button class="btn-ghost" id="restartBtn">Restart game</button>
+          <button class="btn-ghost" id="exitBtn">Exit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exit Game Container -->
+  <div class="exit-screen hidden" id="exitScreen">
+    <div class="exit-card">
+      <div style="font-size:40px;">👋</div>
+      <h2>Thanks for playing!</h2>
+      <p>Hope you enjoyed Snake &amp; Ladder.</p>
+      <button class="btn-start" id="exitPlayAgainBtn">Play again</button>
+    </div>
+  </div>
+
+  <!-- Winner Overlay Modal -->
+  <div class="overlay-win" id="winOverlay">
+    <div class="win-card">
+      <div style="font-size:34px;">🏆</div>
+      <h2 id="winTitle">Player 1 wins!</h2>
+      <p>They reached square 100 first. Nicely played.</p>
+      <button id="winRestart">Play again</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
